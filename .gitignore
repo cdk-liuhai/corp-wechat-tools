@@ -25,5 +25,5 @@
 /.nb-gradle/
 
 ## custom configuration
-/src/main/java/com/yangjing/tools/main
+/src/main/java/com/yangjing/tools/model/URLData.java
 /src/test/java/com/yangjing/tools

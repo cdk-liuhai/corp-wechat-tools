@@ -78,7 +78,7 @@ public class HttpRequestWeChatTool {
             log.info("token还在获取中，请稍后重试（大约1s以内）");
             return null;
         }else{
-            jsonObject.put("access_token",accessToken);
+            url=url+"?access_token="+accessToken;
             String jsonString=HttpRequestUtil.post(url,jsonObject.toJSONString());
             JSONObject resJson=JSONObject.parseObject(jsonString);
             if(resJson.getInteger("errcode")==0){
