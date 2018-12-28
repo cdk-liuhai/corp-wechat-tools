@@ -1,5 +1,6 @@
 package com.yangjing.tools.wechat;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +24,17 @@ public class ContactsManager {
                 jsonObject.put("order",order);
                 jsonObject.put("id",id);
             }
-            return HttpRequestWeChatTool.invokeInterface(url,jsonObject).getInteger("id");
+            JSONObject resJson=HttpRequestWeChatTool.invokeInterface(url,jsonObject);
+            if(resJson!=null){
+                return resJson.getInteger("id");
+            }else{
+                log.error("调用创建部门接口失败",resJson);
+            }
+            return null;
+    }
+
+    public void createMember(String url,JSONObject userInfo){
+        HttpRequestWeChatTool.invokeInterface(url,userInfo);
     }
 
 }

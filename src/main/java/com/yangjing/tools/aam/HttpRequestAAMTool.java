@@ -16,7 +16,7 @@ public class HttpRequestAAMTool {
     public static JSONObject invoke_AAMInterface(String url,JSONObject jsonObject){
         String jsonString=HttpRequestUtil.post(url,jsonObject.toJSONString());
         JSONObject resJson=JSONObject.parseObject(jsonString);
-        if(resJson.getString("retCode").equals("000000")){
+        if(resJson!=null && resJson.getString("retCode").equals("000000")){
             log.info("调用成功",resJson);
             return resJson;
         }else{
@@ -34,7 +34,7 @@ public class HttpRequestAAMTool {
      * @param deptId  级别大于1时，deptId必填
      * @return
      */
-    public static JSONObject getDepartmentInfoByLevel(String url,String orgaId,String pathLength,String deptId){
+    public static JSONObject getDepartmentInfoByLevel(String url,String orgaId,Integer pathLength,String deptId){
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("orgaId",orgaId);
         jsonObject.put("pathLength",pathLength);
